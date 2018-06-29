@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/jquerey-ui.min.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/jquerey-ui.timepicker-addon.css' %}"/>
+
+  <script type="text/javascript" src="{% static 'js/jqurery-ui.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jqurery-ui-timepicker-addon.js' %}"></script>
+  <script type="text/javascript">
+  $(function() {
+    $("#id_start_time").datetimepicker();
+    $("#id_end_time").datetimepicker();
+  });
+  
+  
+  </script>
+{% endblock %}
+
+{% block content %}
+
+<h2>請假申請</h2>
+<form action="" method="POST">
+  {% csrf_token %}
+<table style="background-color: #f2f2f2">
+  {{ form.as_table }}
+</table>
+<input type="submit" value="OK"/>
+
+</form>
+
+{% endblock %}
+

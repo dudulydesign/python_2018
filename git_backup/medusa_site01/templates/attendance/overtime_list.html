@@ -1,0 +1,78 @@
+﻿{% extends "base.html" %}
+
+{% block extra_head %}
+  <script type="text/javascript">
+
+  $(function() {
+    
+    $(".overtime-cancel-link").click(function(){
+
+      var ok = confirm("確定要取消嗎?");
+      var url = $(this).attr("href");
+
+      if(ok) {
+        $.get(url, function(rep) {
+           alert(rep.message);
+            if(rep.code == 0) {
+               window.location.reload();
+            }
+
+
+        });
+
+
+      }
+
+
+       return false;
+    });
+
+
+
+  });
+  </script>
+  
+
+{% endblock %}
+
+{% block content %}
+
+<h2>加班記錄</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>使用者</th>
+      <th>狀態</th>
+      <th>開始時間</th>
+      <th>結束時間</th>
+      <th>分鐘</th>
+      <th>原因</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for obj in pagination.page.object_list %}
+    <tr>
+      <td>{{ obj.user.username }}</td>
+      <td>{{ obj.status_name }}</td>
+      <td>{{ obj.start_time|date:'Y-m-d H:i:s' }}</td>
+      <td>{{ obj.end_time|date:'Y-m-d H:i:s' }}</td>
+      <td>{{ obj.minutes }}</td>
+      <td>{{ obj.reason }}</td>
+      <td>
+
+        <a class="overtime-cancel-link" href="{% url 'overtime_cancel' %}?q={{ obj.id }}">取消申請</a>
+      
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<div class="pagination">
+{{ pagination.render }}
+</div>
+
+
+{% endblock %}

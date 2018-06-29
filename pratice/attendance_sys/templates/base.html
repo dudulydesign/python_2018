@@ -1,0 +1,32 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}王族遊戲出缺勤系統{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+
+  <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <div id="branding">
+        <h1 id="site-name"><a href="{% url 'index' %}">王族遊戲出缺勤系統</a></h1>
+
+      </div>
+
+    </div>
+    <div id="content">
+    {% block content %}
+    {% endblock %}
+    </div>
+
+
+  </div>
+</body>
+</html>
+

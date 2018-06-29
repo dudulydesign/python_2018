@@ -1,0 +1,15 @@
+
+
+#container {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+
+#site-name {
+}
+
+#site-name a {
+  color: #000;
+  text-decoration: none;
+}

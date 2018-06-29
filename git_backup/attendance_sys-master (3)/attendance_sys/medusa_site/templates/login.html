@@ -1,0 +1,27 @@
+﻿{% load static %}
+
+{% block content %}
+
+
+  <div id="container">
+    <div id="header">
+        <div id="branding">
+          <div id="login">
+              <h2>王族遊戲出缺勤系統</h2>
+              <form action="{% url 'login' %}" method="POST">
+                 {% csrf_token %}
+
+                <table>
+                  {{ login_form.as_table }}
+                </table>
+      
+             <div>
+               <input type="submit" value="登入"/>
+             </div>
+          </div> 
+        </div>
+    </div>
+    </form>
+</div>
+
+{% endblock %}

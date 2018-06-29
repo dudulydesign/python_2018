@@ -1,0 +1,17 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+
+
+
+
+
+hi, {{ request.user.username }}
+<ul>
+  <li>
+    <a href="{% url 'logout' %}">登出</a>
+  </li>
+</ul>
+
+{% endblock %}
+

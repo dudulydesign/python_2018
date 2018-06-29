@@ -1,0 +1,60 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <meta http-equiv="refresh" content="300">
+  <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+  <style>*{box-sizing: border-box;}body {margin:0; font-family:arial,Helvetica, sans-serif;}</style>
+  <title>{% block title %}王族遊戲科技有限公司{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+  <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/rwd.js' %}"></script>
+  {% block extra_head %}{% endblock %}
+</head>
+<body >
+
+  <div id="container">
+    <div id="header">
+        <div id="branding">
+          <h1 id="site-name"><a href="{% url 'index' %}">王族遊戲考勤管理</a></h1>
+        </div>
+        <div id="logout"><ul>hi, {{ request.user.username }}<a href="{% url 'logout' %}">登出</a></ul></div>
+
+ 
+        <div id="nav">
+            <ul>
+                <p><a href="{% url 'apply_takeleave' %}">請假申請</a></p>
+                <p><a href="{% url 'takeleave_list' %}">出缺勤記錄</a></p>
+                <p><a href="{% url 'takeleave_audit' %}">出缺勤簽核({{ overtime_count }})</a></p>
+            </ul>
+            <ul>
+                <p><a href="{% url 'index' %}">假期統計</a></p>
+
+            </ul>
+            <ul>
+              <p><a href="{% url 'apply_overtime' %}">加班申請</a></p>
+              <p><a href="{% url 'overtime_list' %}">加班紀錄</a></p>
+              <p><a href="{% url 'leader_audit' %}">加班簽核({{ overtime_count }})</a></p>
+            </ul>
+            <ul>
+              <p><a href="{% url 'index' %}">匯出報表</a></p>
+              <p><a href="{% url 'index' %}">公司規章</a></p>
+            </ul>
+            
+        </div>
+
+        
+        <div id="content">
+            {% block content %} 
+            {% endblock %}
+        </div>
+    </div>
+  </div>
+<div id="footer">copyright by Wangzu Games TECHNOLOGY co., LTD.</div>
+</body>
+</html>

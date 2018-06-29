@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="test/javascript">
+  $(function(){
+      
+    $("#overtime-audit-form").submit(function(){
+      var url = $(this).attr("action");
+      console.log(">>>Submit", url);
+      var post_data = $(this).serialize();
+      console.log(">>> post data", post_data);
+
+      $.post(url, post_data, function(rep) {
+        
+        console.log(">>> post result", rep.code, rep.msg);
+        alert(rep.msg);
+        if(rep.code == 0) {
+            window.location.reload();
+        }
+      });
+      
+
+      return false;
+    });
+
+
+  });
+  </script>
+</head>
+<body>
+  <H2>加班簽核</h2>
+  <table>
+    <tr>
+      <td>username</td>
+      <td>{{ entry.user.username }}</td>
+    </tr>
+    <tr>
+      <td>start time</td>
+      <td>{{ entry.start_time|date:"Y-m-d H:i:s" }}</td>
+    </tr>
+    <tr>
+      <td>end time</td>
+      <td>{{ entry.end_time|date:"Y-m-d H:i:s" }}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+
+        <form id="overtime-audit-form" action="{% url 'overtime_audit' %}?q={{ entry.id }}" method="POST">       
+          {% csrf_token %}
+         {{ form.as_p }}
+
+         <input type="submit">
+
+        </form>
+      
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

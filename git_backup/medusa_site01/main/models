@@ -1,0 +1,37 @@
+﻿# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
+
+
+class DepartmentEntry(models.Model):
+  name = models.CharField(max_length=64)
+  ordering = models.IntegerField()
+
+class UserProfileEntry(models.Model):
+  department = models.ForeignKey(DepartmentEntry)
+  title = models.CharField(max_length=100)
+  user = models.OneToOneField(User)
+  started = models.DateField()
+  ended = models.DateField()
+  mobile = models.CharField(max_length=100)
+  email = models.CharField(max_length=100)
+  address = models.CharField(max_length=200)
+  emergency_contact = models.CharField(max_length=100)
+
+
+
+class StaffRelatedEntry(models.Model):
+  class Meta:
+    unique_together = ("user", "staff_user")
+  staff_department = models.ForeignKey(DepartmentEntry)
+  staff_title = models.CharField(max_length=100)
+  staff_user = models.ForeignKey(User, related_name="staff_user")
+  staff_started = models.DateField()
+  staff_ended = models.DateField()
+  staff_mobile = models.CharField(max_length=100)
+  staff_email = models.CharField(max_length=100)
+  staff_address = models.CharField(max_length=200)
+  staff_emergency_contact = models.CharField(max_length=100)
+

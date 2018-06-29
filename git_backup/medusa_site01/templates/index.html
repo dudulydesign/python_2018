@@ -1,0 +1,28 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+
+
+
+
+<ul>
+  <li>
+    <a href="{% url 'apply_overtime' %}">加班申請</a>
+  </li>
+  <li>
+    <a href="{% url 'overtime_list' %}">加班紀錄</a>
+  </li>
+  <li>
+    <a href="{% url 'leader_audit' %}">簽核作業({{ audit_wait }})</a>
+  </li>
+</ul>
+
+
+hi, {{ request.user.username }}
+<ul>
+  <li>
+    <a href="{% url 'logout' %}">登出</a>
+  </li>
+</ul>
+
+{% endblock %}
